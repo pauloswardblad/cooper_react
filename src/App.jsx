@@ -19,17 +19,46 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  render() {
-    const renderLogin = this.state.renderLoginForm ? (
-      <LoginForm submitFormHandler={this.onLogin} />
-    ) : (
-      <button
-        id="login"
-        onClick={() => this.setState({ renderLoginForm: true })}
-      >
-        Login
-      </button>
+  onLogin = async e => {
+    e.preventDefault();
+    const response = await authenticate(
+      e.target.email.value,
+      e.target.password.value
     );
+    if (response.authenticated) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: response.message, renderLoginForm: false });
+    }
+  };
+
+  render() {
+    const { renderLoginForm, authenticated, message } = this.state;
+    let renderLogin;
+    switch(true) {
+      case renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
+        break;
+      case !renderLoginForm && !authenticated:
+        renderLogin = (
+          <>
+            <button
+              id="login"
+              onClick={() => this.setState({ renderLoginForm: true })}
+            >
+              Login
+            </button>
+            <p>{message}</p>
+          </>
+        );
+        break;
+      case authenticated:
+        renderLogin = (
+          <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        );
+        break;
+    }
+
     return (
       <>
         <InputFields onChangeHandler={this.onChangeHandler} />
@@ -44,17 +73,6 @@ class App extends Component {
   }
 }
 
-onLogin = async e => {
-  e.preventDefault();
-  const response = await authenticate(
-    e.target.email.value,
-    e.target.password.value
-  );
-  if (response.authenticated) {
-    this.setState({ authenticated: true });
-  } else {
-    this.setState({ message: response.message, renderLoginForm: false });
-  }
-};
+
 
 export default App;
