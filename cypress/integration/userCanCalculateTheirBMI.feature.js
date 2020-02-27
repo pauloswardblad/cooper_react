@@ -1,46 +1,21 @@
-import React from "react";
+/// <reference types="Cypress" />
+describe('BMI Calculator', () => {
+  beforeEach(() => {
+    cy.visit('/');
+  })
 
-const BmiForm = props => {
-
-  const wtplaceholder = props.unit == "imperial" ?  "Weight in lbs" : "Weight in kgs"
-  const htplaceholder = props.unit == "imperial" ? "Height in inches" : "Height in cm" 
-
-  return (
-    <form onSubmit={props.onSubmitHandler}>
-      <select
-        name="unit"
-        id="unit"
-        type="text"
-        default="metric"
-        onChange={props.onChangeHandler}
-      >
-        <option value="metric">Metric</option>
-        <option value="imperial">Imperial</option>
-      </select>
-
-      <label htmlFor="weight">Weight</label>
-      <input
-        type="number"
-        required
-        placeholder={wtplaceholder}
-        value={props.weight}
-        name="weight"
-        id="weight"
-        onChange={props.onChangeHandler}
-      />
-      <label htmlFor="height">Height</label>
-      <input
-        type="number"
-        required
-        placeholder={htplaceholder}
-        value={props.height}
-        name="height"
-        id="height"
-        onChange={props.onChangeHandler}
-      />
-      <button id='calculate'>Calculate BMI</button>
-    </form>
-  );
-};
-
-export default BmiForm;
+  it('Calculates BMI in metric',() => {
+    cy.get('select#unit').select('metric');
+    cy.get('input#weight').type(90);
+    cy.get('input#height').type(190);
+    cy.get('button#calculate').click();
+    cy.get('p#bmi-message').should('contain', 'You are Normal with a BMI of 24.93')
+  })
+  it('Calculates BMI in imperial',() => {
+    cy.get('select#unit').select('imperial');
+    cy.get('input#weight').type(198);
+    cy.get('input#height').type(74);
+    cy.get('button#calculate').click();
+    cy.get('p#bmi-message').should('contain', 'You are Overweight with a BMI of 25.42')
+  })
+})

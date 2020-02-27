@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { getData } from "../modules/performanceData";
+import { getData } from "../modules/bmiData";
 
 
-class DisplayPerformanceData extends Component {
+class DisplayBmiData extends Component {
   state = {
-    performanceData: null
+    bmiData: null
   }
 
   componentDidMount() {
-    this.getPerformanceData()
+    this.getBmiData()
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.updateIndex != prevProps.updateIndex) {
-      this.getPerformanceData()
+      this.getBmiData()
     }
   }
 
-  async getPerformanceData() {
+  async getBmiData() {
     let result = await getData();
-    this.setState({performanceData: result.data.entries}, () => {
+    this.setState({bmiData: result.data.entries}, () => {
       this.props.indexUpdated();
     })
   }
@@ -27,10 +27,10 @@ class DisplayPerformanceData extends Component {
   render () {
     let dataIndex;
 
-    if (this.state.performanceData != null) {
+    if (this.state.bmiData != null) {
       dataIndex = (
         <div id="index">
-          {this.state.performanceData.map(item => {
+          {this.state.bmiData.map(item => {
             return <div key={item.id}>{item.data.message}</div>
           })}
         </div>
@@ -45,4 +45,4 @@ class DisplayPerformanceData extends Component {
   }      
 }
 
-export default DisplayPerformanceData;
+export default DisplayBmiData;
