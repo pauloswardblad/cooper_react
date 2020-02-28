@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const saveData = async (result, entryHandler) => {
+const saveBmiData = async (result, entryHandler) => {
   let headers = sessionStorage.getItem("credentials");
   headers = JSON.parse(headers);
   headers = {
@@ -24,7 +24,7 @@ const saveData = async (result, entryHandler) => {
   }
 };
 
-const getData = async () => {
+const getBmiData = async () => {
   let headers = await sessionStorage.getItem("credentials");
   headers = JSON.parse(headers);
   headers = {
@@ -40,4 +40,4 @@ const getData = async () => {
   return response;
 };
 
-export { saveData, getData };
+export { saveBmiData, getBmiData };

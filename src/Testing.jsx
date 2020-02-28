@@ -118,6 +118,7 @@ class Testing extends Component {
 
     return (
       <>
+      <div id='Content'>
         <h1>Health Tracker and Calculators</h1>
         {renderLogin}
         <h2>Calculate Cooper Test </h2>
@@ -131,8 +132,8 @@ class Testing extends Component {
           entryHandler={() => this.setState({ entrySaved: true, updateIndex: true })}
         />
         {performanceDataIndex}
-        <div>
-          <h3>BMI Calculator</h3>
+        <div><br/><br/><br/>
+          <h2>BMI Calculator</h2>
           <BmiForm
           unit={this.state.unit}
           weight={this.state.weight}
@@ -150,6 +151,7 @@ class Testing extends Component {
         )}
         {bmiDataIndex}
         </div>
+      </div>
       </>
     );
   }

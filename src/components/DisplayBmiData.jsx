@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData } from "../modules/bmiData";
+import { getBmiData } from "../modules/bmiData";
 
 
 class DisplayBmiData extends Component {
@@ -18,7 +18,7 @@ class DisplayBmiData extends Component {
   }
 
   async getBmiData() {
-    let result = await getData();
+    let result = await getBmiData();
     this.setState({bmiData: result.data.entries}, () => {
       this.props.indexUpdated();
     })

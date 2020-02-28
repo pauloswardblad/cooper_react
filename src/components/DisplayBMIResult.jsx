@@ -1,6 +1,6 @@
 import React from "react";
 import { calculateBmi } from "./helpers/bmiHelper";
-import { saveData } from "../modules/performanceData";
+import { saveBmiData } from "../modules/performanceData";
 
 const DisplayBMIResult = ({
   unit,
@@ -27,12 +27,12 @@ const DisplayBMIResult = ({
           {authenticated && !entrySaved ? (
             <button
               id="save-result"
-              onClick={() => saveData(result, entryHandler)}
+              onClick={() => saveBmiData(result, entryHandler)}
             >
-              Save entry
+              Save BMI entry
             </button>
           ) : (
-            <p id="response-message">Your entry was saved</p>
+            <p id="response-message">Your BMI entry was saved</p>
           )}
         </>
       )}
