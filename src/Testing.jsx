@@ -121,6 +121,7 @@ class Testing extends Component {
       <div id='Content'>
         <h1>Health Tracker and Calculators</h1>
         {renderLogin}
+        <br/>
         <h2>Calculate Cooper Test </h2>
         <InputFields onChangeHandler={this.onChangeHandler} />
         <DisplayCooperResult

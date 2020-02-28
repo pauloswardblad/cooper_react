@@ -1,6 +1,6 @@
 import React from "react";
 import { calculateBmi } from "./helpers/bmiHelper";
-import { saveBmiData } from "../modules/performanceData";
+import { saveBmiData } from "../modules/bmiData";
 
 const DisplayBMIResult = ({
   unit,

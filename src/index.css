@@ -16,3 +16,27 @@ code {
 }
 
 
+#Content{
+  background-color: white;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-top: 100px;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-bottom: 75px;
+  padding-top: 25px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+#login {
+  background-color: #04469c; /* Green */
+   border: none;
+   color: white;
+   padding: 10px 26px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+  font-size: 18px;
+  border-radius: 15px;
+}

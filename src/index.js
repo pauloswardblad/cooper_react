@@ -7,7 +7,7 @@ import axios from "axios";
 //import BmiApp from "./BmiApp";
 import Testing from "./Testing";
 
-axios.defaults.baseURL = "https://git.heroku.com/cooper-test34.git";
+axios.defaults.baseURL = "http://localhost:3000/api/v1";
 
 ReactDOM.render(<Testing />, document.getElementById("root"));
 
