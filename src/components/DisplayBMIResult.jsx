@@ -26,7 +26,7 @@ const DisplayBMIResult = ({
           <p id="bmi-result">Result: {result}</p>
           {authenticated && !entrySaved ? (
             <button
-              id="save-result"
+              id="save-bmi-result"
               onClick={() => saveBmiData(result, entryHandler)}
             >
               Save BMI entry
